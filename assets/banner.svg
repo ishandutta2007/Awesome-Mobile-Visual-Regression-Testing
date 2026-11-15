@@ -1,0 +1,194 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" width="100%" height="360" style="background:#090d16;border-radius:16px;overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="bgGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="50%" stop-color="#090d16" />
+      <stop offset="100%" stop-color="#050811" />
+    </linearGradient>
+
+    <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="50%" stop-color="#818cf8" />
+      <stop offset="100%" stop-color="#c084fc" />
+    </linearGradient>
+
+    <linearGradient id="badgeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.2" />
+      <stop offset="100%" stop-color="#818cf8" stop-opacity="0.05" />
+    </linearGradient>
+
+    <linearGradient id="scanBeam" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0" />
+      <stop offset="50%" stop-color="#38bdf8" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#c084fc" stop-opacity="0" />
+    </linearGradient>
+
+    <!-- Filters -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <filter id="subtleGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <style>
+    /* Dynamic Animated Aspects */
+    @keyframes pulseOrb {
+      0%, 100% { opacity: 0.25; transform: scale(1) translate(0, 0); }
+      50% { opacity: 0.45; transform: scale(1.15) translate(15px, -10px); }
+    }
+    @keyframes scanMove {
+      0% { transform: translateY(0px); opacity: 0; }
+      15% { opacity: 0.9; }
+      85% { opacity: 0.9; }
+      100% { transform: translateY(140px); opacity: 0; }
+    }
+    @keyframes floatPhone1 {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+    @keyframes floatPhone2 {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(8px); }
+    }
+    @keyframes diffBlink {
+      0%, 100% { fill-opacity: 0.2; stroke-opacity: 0.4; }
+      50% { fill-opacity: 0.65; stroke-opacity: 0.95; }
+    }
+    @keyframes gridShift {
+      0% { stroke-dashoffset: 0; }
+      100% { stroke-dashoffset: 40; }
+    }
+
+    .bg-grid {
+      stroke: #1e293b;
+      stroke-width: 0.7;
+      stroke-opacity: 0.4;
+      stroke-dasharray: 4, 4;
+      animation: gridShift 20s linear infinite;
+    }
+    .orb-1 {
+      animation: pulseOrb 8s ease-in-out infinite;
+      transform-origin: 200px 100px;
+    }
+    .orb-2 {
+      animation: pulseOrb 10s ease-in-out infinite reverse;
+      transform-origin: 1000px 250px;
+    }
+    .scanner-line {
+      animation: scanMove 4s ease-in-out infinite;
+    }
+    .mockup-left {
+      animation: floatPhone1 6s ease-in-out infinite;
+    }
+    .mockup-right {
+      animation: floatPhone2 7s ease-in-out infinite;
+    }
+    .diff-highlight {
+      animation: diffBlink 2.5s ease-in-out infinite;
+    }
+  </style>
+
+  <!-- Deep Background Layer -->
+  <rect width="1200" height="360" fill="url(#bgGlow)" />
+
+  <!-- Animated Ambient Orbs (Background) -->
+  <circle class="orb-1" cx="180" cy="90" r="130" fill="#38bdf8" filter="url(#glow)" opacity="0.25" />
+  <circle class="orb-2" cx="1020" cy="240" r="140" fill="#c084fc" filter="url(#glow)" opacity="0.2" />
+
+  <!-- Background Grid Lines -->
+  <g class="bg-grid">
+    <line x1="0" y1="60" x2="1200" y2="60" />
+    <line x1="0" y1="120" x2="1200" y2="120" />
+    <line x1="0" y1="180" x2="1200" y2="180" />
+    <line x1="0" y1="240" x2="1200" y2="240" />
+    <line x1="0" y1="300" x2="1200" y2="300" />
+    <line x1="150" y1="0" x2="150" y2="360" />
+    <line x1="300" y1="0" x2="300" y2="360" />
+    <line x1="450" y1="0" x2="450" y2="360" />
+    <line x1="600" y1="0" x2="600" y2="360" />
+    <line x1="750" y1="0" x2="750" y2="360" />
+    <line x1="900" y1="0" x2="900" y2="360" />
+    <line x1="1050" y1="0" x2="1050" y2="360" />
+  </g>
+
+  <!-- Graphic Accents: Mobile Device Frame 1 (Left Background Accent) -->
+  <g class="mockup-left" opacity="0.32" transform="translate(60, 80)">
+    <rect x="0" y="0" width="110" height="190" rx="16" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5" />
+    <!-- Notch -->
+    <rect x="35" y="6" width="40" height="6" rx="3" fill="#38bdf8" opacity="0.6" />
+    <!-- Screen Skeleton -->
+    <rect x="12" y="24" width="86" height="14" rx="4" fill="#1e293b" />
+    <rect x="12" y="46" width="40" height="40" rx="6" fill="#1e293b" />
+    <rect x="58" y="46" width="40" height="40" rx="6" fill="#1e293b" />
+    <rect x="12" y="96" width="86" height="50" rx="6" fill="#1e293b" />
+  </g>
+
+  <!-- Graphic Accents: Mobile Device Frame 2 (Right Dynamic Diff Screen) -->
+  <g class="mockup-right" transform="translate(1010, 75)">
+    <rect x="0" y="0" width="125" height="210" rx="18" fill="#0b1120" stroke="#818cf8" stroke-width="1.8" filter="url(#subtleGlow)" />
+    <!-- Speaker & Camera -->
+    <rect x="42" y="7" width="40" height="5" rx="2.5" fill="#475569" />
+    <!-- Screen Header -->
+    <rect x="14" y="22" width="97" height="16" rx="4" fill="#1e293b" />
+    <!-- Baseline Card -->
+    <rect x="14" y="46" width="97" height="42" rx="6" fill="#1e293b" stroke="#334155" />
+    <!-- Visual Regression Diff Highlight (Pulsing) -->
+    <rect class="diff-highlight" x="14" y="96" width="97" height="52" rx="6" fill="#f43f5e" stroke="#fb7185" stroke-width="1.5" />
+    <text x="62" y="126" font-size="9" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.5">UI DIFF DETECTED</text>
+    <rect x="14" y="156" width="97" height="20" rx="4" fill="#1e293b" />
+
+    <!-- Animated Scanning Laser Beam across the right screen -->
+    <g class="scanner-line">
+      <rect x="8" y="30" width="109" height="2.5" fill="url(#scanBeam)" filter="url(#glow)" />
+    </g>
+  </g>
+
+  <!-- FOREGROUND CONTENT: Header & Meta (Crisp, High Contrast, Foreground Protected) -->
+  <!-- Top Tag / Pill -->
+  <g transform="translate(200, 48)">
+    <rect x="0" y="0" width="310" height="30" rx="15" fill="url(#badgeGrad)" stroke="#38bdf8" stroke-width="1" stroke-opacity="0.4" />
+    <circle cx="16" cy="15" r="4" fill="#38bdf8" filter="url(#subtleGlow)" />
+    <text x="28" y="19" font-size="11" font-weight="600" fill="#7dd3fc" letter-spacing="1.2">CURATED QUALITY ASSURANCE SUITE</text>
+  </g>
+
+  <!-- Main Title -->
+  <text x="200" y="128" font-size="38" font-weight="800" fill="#ffffff" letter-spacing="-0.8">
+    Mobile Visual Regression Testing
+  </text>
+
+  <!-- Gradient Sub-Bar / Underline Accent -->
+  <rect x="200" y="144" width="220" height="4" rx="2" fill="url(#primaryGrad)" />
+
+  <!-- Subtitle / Value Proposition -->
+  <text x="200" y="180" font-size="15" font-weight="400" fill="#94a3b8" letter-spacing="0.2">
+    Production-grade visual diffing, AI UI validation &amp; snapshot frameworks for Android &amp; iOS
+  </text>
+  <text x="200" y="204" font-size="13" font-weight="400" fill="#64748b" letter-spacing="0.1">
+    Catch unintended layout drifts, font issues &amp; pixel breaking changes before your users do.
+  </text>
+
+  <!-- Feature Pills in Foreground -->
+  <g transform="translate(200, 240)">
+    <!-- Pill 1: Android & iOS Native -->
+    <rect x="0" y="0" width="175" height="34" rx="10" fill="#111827" stroke="#334155" stroke-width="1" />
+    <text x="87" y="21" font-size="12" font-weight="600" fill="#38bdf8" text-anchor="middle">📱 Android &amp; iOS Native</text>
+
+    <!-- Pill 2: Jetpack & Swift -->
+    <rect x="185" y="0" width="180" height="34" rx="10" fill="#111827" stroke="#334155" stroke-width="1" />
+    <text x="275" y="21" font-size="12" font-weight="600" fill="#818cf8" text-anchor="middle">⚡ Jetpack Compose &amp; Swift</text>
+
+    <!-- Pill 3: Self-Hosted & SaaS -->
+    <rect x="375" y="0" width="175" height="34" rx="10" fill="#111827" stroke="#334155" stroke-width="1" />
+    <text x="462" y="21" font-size="12" font-weight="600" fill="#c084fc" text-anchor="middle">🛡️ Self-Hosted &amp; SaaS Cloud</text>
+
+    <!-- Pill 4: Zero-Flake Snapshot -->
+    <rect x="560" y="0" width="165" height="34" rx="10" fill="#111827" stroke="#334155" stroke-width="1" />
+    <text x="642" y="21" font-size="12" font-weight="600" fill="#34d399" text-anchor="middle">🔍 Zero-Flake Baselines</text>
+  </g>
+</svg>
