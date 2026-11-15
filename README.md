@@ -9,95 +9,114 @@
 
 ## 📋 Table of Contents
 
+- [Sector Overview & Market Dynamics](#-sector-overview--market-dynamics)
 - [SaaS / Hosted Platforms](#-saas--hosted-platforms)
-  - [Applitools Eyes](#applitools-eyes)
-  - [BrowserStack Percy](#browserstack-percy)
-  - [Sauce Labs Visual Testing](#sauce-labs-visual-testing)
-  - [LambdaTest SmartUI](#lambdatest-smartui)
 - [Open-Source Software](#-open-source-software)
-  - [Visual Regression Tracker](#visual-regression-tracker)
-  - [Argos](#argos)
-  - [reg-suit](#reg-suit)
-  - [dánwò](#dánwò)
-  - [Yewo](#yewo)
+- [Comparison at a Glance](#-comparison-at-a-glance)
+- [Contributing](#-contributing)
+- [License](#-license)
+
+---
+
+## 📈 Sector Overview & Market Dynamics
+
+The global mobile application testing market is valued at approximately **$8B to $11.5B** and is projected to expand at a **CAGR of 13%–17%** (surpassing $30B+ over the next decade), with automated visual regression and snapshot testing representing its fastest-growing component. The sector is **moderately fragmented**: although continuous testing giants (e.g., BrowserStack, Sauce Labs) and enterprise testing services dominate high-volume cloud infrastructure, extreme OS and hardware fragmentation (across Android and iOS form factors) prevents a winner-take-all monopoly and fosters specialized, niche visual AI engines alongside thriving developer-centric open-source snapshot libraries.
 
 ---
 
 ## 🟦 SaaS / Hosted Platforms
 
-Commercial, cloud-hosted Mobile Visual Regression Testing platforms. These are not open-source but are included as reference points for feature comparison.
+Commercial, cloud-hosted Mobile Visual Regression Testing platforms sorted by company size (valuation / revenue descending):
 
-### Applitools Eyes
-**Type:** AI-powered visual validation across web and mobile
-Applitools is widely recognized as the most capable visual testing tool, with its **Visual AI** engine that understands page structure and ignores rendering noise like anti-aliasing and font rendering, resulting in the fewest false positives among commercial platforms [citation:5]. For mobile, Applitools supports native Android and iOS apps, but it **requires Appium underneath** — meaning you inherit Appium's selector fragility alongside the per-checkpoint cost [citation:5]. Pricing starts at **$399/month for 1,000 validations**, with enterprise contracts running $10K–$30K+ annually [citation:5].
-**Best for:** Enterprises needing the most accurate visual AI with the fewest false positives, accepting Appium dependency for mobile and premium checkpoint-based pricing.
-
-### BrowserStack Percy
-**Type:** Managed visual testing with native mobile support
-Percy (BrowserStack) provides managed visual review across CI and native mobile, with BrowserStack documenting support for native mobile applications alongside desktop and real-mobile browsers [citation:11]. It uses DOM snapshot rendering for web (more stable than raw pixel capture) and integrates with Playwright, Cypress, Selenium, and Storybook [citation:5]. The free tier includes **5,000 screenshots/month with unlimited users**, with paid plans charging per screenshot ($0.01 desktop, $0.02 desktop plus mobile web) — pricing that is more predictable than Applitools' checkpoint model [citation:5].
-**Best for:** Teams wanting managed visual review across web and native mobile with transparent per-screenshot pricing and strong CI/CD integration.
-
-### Sauce Labs Visual Testing
-**Type:** Visual testing within Sauce Labs device cloud
-Sauce Labs provides visual testing integrated into its virtual and real device cloud, with snapshot allowances on entry tiers and smart hybrid diff capabilities. It is positioned for teams already using Sauce Labs for cross-browser and mobile testing who want visual regression in the same platform.
-
-### LambdaTest SmartUI
-**Type:** Visual regression with Figma and Storybook support
-SmartUI by LambdaTest captures screenshots, compares against approved baselines, and uses Visual AI to filter pixel noise. It works with Playwright, Selenium, and Cypress, and can test Figma designs and Storybook screenshots directly. Positioned for teams wanting visual testing alongside LambdaTest's cross-browser cloud.
+| Platform | Company Valuation / Revenue | Starting Pricing Tier | Free Tier / Trial Limits | Mobile Testing Support | Best For |
+|---|---|---|---|---|---|
+| **[BrowserStack Percy](https://percy.io/)** | **$4B Valuation** (~$230M ARR) | **$199/month** (Desktop, billed annually) or **$599/month** (Desktop & Mobile, billed annually; $0.048/overage snapshot) | **Free Forever Plan**: 5,000 screenshots/month, unlimited users & projects | Native iOS & Android via Appium / Percy CLI + Real mobile browsers | Managed visual review across web and native mobile with transparent per-screenshot pricing and strong CI/CD integration |
+| **[Sauce Labs Visual](https://saucelabs.com/)** | **$613M Valuation** (~$65M–$92M ARR) | **$199/month** (billed annually, includes real device/virtual device cloud concurrency + baseline snapshot allowance) | **28-Day Free Trial**: 60 automated & live testing minutes across 3 parallel VMs with real mobile devices & emulators | Real device cloud + iOS Simulators / Android Emulators | Teams already embedded in Sauce Labs' cross-browser/device cloud wanting consolidated visual regression |
+| **[LambdaTest SmartUI](https://www.lambdatest.com/smart-ui)** | **$400M Valuation** (~$19M ARR) | **$199/month** (billed annually for 15,000 screenshots/month) | **Free Forever Plan**: 2,000 lifetime screenshots with responsive visual engine & build history | Real mobile device cloud + Playwright/Appium/Storybook integrations | Cross-browser and mobile cloud testing teams looking for bundled Storybook & Figma visual diffing |
+| **[Applitools Eyes](https://applitools.com/)** | **~$250M–$300M Valuation** (Acquired by Thoma Bravo; ~$30M–$100M ARR) | **$667/month** (Starter tier billed annually at $8,004/year for up to 1,000 page checkpoints or 100,000 component checkpoints/month) | **14-Day Free Trial**: Full-featured access to Visual AI engine and test unit checkpoint allocations | Native Android & iOS apps via Appium / Espresso / XCUITest SDKs | Enterprises demanding highest-accuracy Visual AI with minimal false positives and layout-aware diffing |
 
 ---
 
 ## 🟩 Open-Source Software
 
-Self-hosted, community-driven Mobile Visual Regression Testing tools. The open-source ecosystem spans **full self-hosted visual testing platforms**, **CLI-based snapshot testing**, **AI-native test frameworks**, and **vision-model test agents**.
+Self-hosted, community-driven Mobile Visual Regression and Screenshot Testing tools, sorted by GitHub stargazers (descending):
 
-### Visual Regression Tracker
-**Stack:** Node.js / TypeScript / PostgreSQL / Docker | **License:** MIT
-Visual Regression Tracker is the most established open-source, self-hosted solution for visual testing and managing results [citation:3][citation:4]. Its critical feature for mobile is **platform independence**: it works with web, mobile, and desktop — "as long as you could make a screenshot" [citation:3][citation:4]. This means you can capture screenshots from Appium, Espresso, or XCUITest and feed them into the tracker for pixel-by-pixel comparison against accepted baselines. Key features include:
-- **Automation framework independent**: integrate with any existing tool
-- **Baseline history**: track how baseline images changed over time
-- **Ignore regions**: improve stability by ignoring unimportant or uncontrollable parts of images
-- **Language support**: JS, Java, Python, .NET, or any other via REST API
-- **Multiple comparison providers**: Pixelmatch (default), Looks-Same (perceptual), Odiff (layout detection), and **VLM (Vision Language Model)** for AI-powered human-noticeability analysis
-- **Docker deployment**: everything inside Docker images, with a quick setup script for Linux/macOS/WSL
+### 1. [pointfreeco/swift-snapshot-testing](https://github.com/pointfreeco/swift-snapshot-testing) [![GitHub stars](https://img.shields.io/github/stars/pointfreeco/swift-snapshot-testing?style=social&color=white)](https://github.com/pointfreeco/swift-snapshot-testing/stargazers)
+- **Stack:** Swift / XCTest | **License:** MIT | **Platform:** iOS, macOS, tvOS, watchOS
+- Delightful, industry-standard Swift snapshot testing library that lets you record and verify snapshots of `UIView`, `UIViewController`, SwiftUI views, layers, and arbitrary data types directly within XCTest without third-party cloud dependencies.
+- **Best for:** Native iOS and Swift developers who want deterministic snapshot assertions within standard unit and integration tests.
 
-**Critical configuration note:** The `JWT_SECRET` in `.env` must be set to a random value, or the API will not start [citation:3][citation:4].
-**Best for:** Teams wanting a proven, self-hosted visual testing platform that accepts screenshots from any mobile automation framework, with multiple comparison algorithms including AI-based noticeability analysis.
+### 2. [cashapp/paparazzi](https://github.com/cashapp/paparazzi) [![GitHub stars](https://img.shields.io/github/stars/cashapp/paparazzi?style=social&color=white)](https://github.com/cashapp/paparazzi/stargazers)
+- **Stack:** Kotlin / JVM / layoutlib | **License:** Apache-2.0 | **Platform:** Android (Jetpack Compose & Views)
+- Render Android screens and Jetpack Compose composables directly on the JVM without needing a physical device or emulator. By utilizing Android's layoutlib, it renders deterministic screenshots in seconds on CI runners.
+- **Best for:** Android engineering teams wanting lightning-fast visual regression checks for Jetpack Compose and XML layouts without emulator overhead.
 
-### Argos
-**Stack:** TypeScript / Node.js | **License:** MIT
-Argos is an open-source visual testing platform explicitly positioned for **teams and AI agents**, with the tagline "Review the product, not just the code" [citation:1][citation:7]. It is a direct alternative to Percy, with GitHub topics including `percy-alternative`, `visual-regression`, and `visual-testing` [citation:1]. The platform is MIT-licensed and under active development (last updated August 2026) [citation:13]. For mobile, Argos can accept screenshots from any source, including Appium or native test frameworks, and diff them against baselines with a review workflow.
-**Best for:** Teams wanting an MIT-licensed, actively maintained Percy alternative with a focus on review workflows and AI agent integration, accepting that it is a general visual testing platform rather than mobile-specific.
+### 3. [uber/ios-snapshot-test-case](https://github.com/uber/ios-snapshot-test-case) [![GitHub stars](https://img.shields.io/github/stars/uber/ios-snapshot-test-case?style=social&color=white)](https://github.com/uber/ios-snapshot-test-case/stargazers)
+- **Stack:** Objective-C / Swift | **License:** MIT | **Platform:** iOS
+- Originally created by Facebook as `FBSnapshotTestCase` and maintained by Uber, this foundational framework takes configured `UIView` or `CALayer` instances, renders them to images, and compares them against reference baseline images pixel-by-pixel.
+- **Best for:** Established iOS applications with legacy Objective-C or Swift codebases needing reliable, view-based reference assertions.
 
-### reg-suit
-**Stack:** Node.js / CLI | **License:** MIT
-reg-suit is a command-line visual regression testing tool inspired by snapshot testing, with a plugin architecture for integration [citation:2][citation:8]. It compares current images against previous images, creates an HTML report of differences, and stores snapshots in external cloud storage (AWS S3, Google Cloud Storage) [citation:2]. Plugins include Git-hash-based key generation, S3/GCS publishing, and notifications to GitHub, GitLab, Slack, and Chatwork [citation:2][citation:8]. For mobile, reg-suit is **framework-agnostic** — you provide the screenshot images from any source, and it handles the comparison and reporting.
-**Best for:** Teams wanting a lightweight, plugin-driven CLI for visual regression that integrates into any CI pipeline, accepting that screenshot capture must be handled separately.
+### 4. [facebookarchive/screenshot-tests-for-android](https://github.com/facebookarchive/screenshot-tests-for-android) [![GitHub stars](https://img.shields.io/github/stars/facebookarchive/screenshot-tests-for-android?style=social&color=white)](https://github.com/facebookarchive/screenshot-tests-for-android/stargazers)
+- **Stack:** Java / Python / Gradle | **License:** Apache-2.0 | **Platform:** Android
+- Deterministic instrumentation screenshot testing library developed by Meta/Facebook. It runs layouts on the instrumentation thread without animation or rendering flakiness, providing clean diffing for Android views.
+- **Best for:** Traditional Android instrumentation test suites requiring deterministic screenshot capture on Android emulators or devices.
 
-### dánwò
-**Stack:** Node.js / TypeScript | **License:** Open Source
-dánwò is an open-source end-to-end testing framework for web and mobile apps that includes **screenshot comparison** as a built-in feature [citation:6]. It runs on Android emulators and iOS Simulators (plus native SwiftUI, Jetpack Compose, and Flutter apps), with plain-English agent steps that replay without model calls after the first run [citation:6]. The screenshot assertion (`await expect(screen).toHaveScreenshot(...)`) provides visual regression capability within the test flow, eliminating the need for a separate visual testing tool. It also includes a backend layer with emulated providers (Stripe, Clerk, Resend) and fault injection for testing payment and email flows [citation:6].
-**Best for:** Teams wanting an integrated E2E testing framework with built-in mobile screenshot comparison and AI-assisted test authoring, accepting a newer, comprehensive framework.
+### 5. [reg-viz/reg-suit](https://github.com/reg-viz/reg-suit) [![GitHub stars](https://img.shields.io/github/stars/reg-viz/reg-suit?style=social&color=white)](https://github.com/reg-viz/reg-suit/stargazers)
+- **Stack:** Node.js / CLI | **License:** MIT | **Platform:** Framework-agnostic (Ingests image directories)
+- Flexible CLI visual regression testing tool with a plugin ecosystem. It compares images against previous baselines stored in cloud storage (AWS S3, Google Cloud Storage), generates responsive HTML visual diff reports, and posts pull request comments across GitHub, GitLab, and Slack.
+- **Best for:** Teams looking for a lightweight, plugin-driven CLI that integrates with any mobile screenshot capture pipeline (Appium, Maestro, Espresso).
 
-### Yewo
-**Stack:** Python / Appium | **License:** Open Source (alpha)
-Yewo is an AI testing agent for Android and iOS apps that uses **visual models to identify controls and locate where to tap**, eliminating dependence on accessibility IDs, test IDs, or other app-specific selectors [citation:12]. It runs plain-language goals against Android and iOS builds, discovers the journey, generates evidence-grounded test scenarios, and executes them with independent auditing [citation:12]. While primarily an AI test agent rather than a pure visual regression tool, its vision-based approach inherently detects visual anomalies. **Important status:** Yewo is explicitly **alpha software** — expect breaking changes while its public interface is established [citation:12].
-**Best for:** Teams wanting to explore AI-agent-driven mobile testing that operates on visual screenshots without selectors, accepting alpha-stage maturity.
+### 6. [pedrovgs/Shot](https://github.com/pedrovgs/Shot) [![GitHub stars](https://img.shields.io/github/stars/pedrovgs/Shot?style=social&color=white)](https://github.com/pedrovgs/Shot/stargazers)
+- **Stack:** Kotlin / Android Gradle Plugin | **License:** Apache-2.0 | **Platform:** Android (Compose & Views)
+- Shot is a developer-friendly Android Gradle plugin that facilitates screenshot testing for Android apps. It integrates seamlessly with Jetpack Compose previews and Espresso tests, generating HTML diff reports upon failure.
+- **Best for:** Android developers wanting zero-configuration Gradle integration for Compose and Espresso screenshot testing with automated report generation.
+
+### 7. [takahirom/roborazzi](https://github.com/takahirom/roborazzi) [![GitHub stars](https://img.shields.io/github/stars/takahirom/roborazzi?style=social&color=white)](https://github.com/takahirom/roborazzi/stargazers)
+- **Stack:** Kotlin / JVM / Robolectric | **License:** Apache-2.0 | **Platform:** Android (Compose & Views)
+- Modern Android screenshot testing library powered by Robolectric Native Graphics. It captures screenshots of Jetpack Compose composables and standard Android views on the JVM, supporting GIF output for animations, AI image comparison, and seamless CI verification.
+- **Best for:** Teams using Robolectric for Android unit tests who want fast JVM-based screenshot regression verification with rich diffing and animation support.
+
+### 8. [Visual-Regression-Tracker/Visual-Regression-Tracker](https://github.com/Visual-Regression-Tracker/Visual-Regression-Tracker) [![GitHub stars](https://img.shields.io/github/stars/Visual-Regression-Tracker/Visual-Regression-Tracker?style=social&color=white)](https://github.com/Visual-Regression-Tracker/Visual-Regression-Tracker/stargazers)
+- **Stack:** TypeScript / Node.js / PostgreSQL / Docker | **License:** MIT | **Platform:** Framework-agnostic (Web, Mobile, Desktop)
+- An enterprise-grade, self-hosted open-source platform for tracking and approving visual regressions. Accepts screenshots from Appium, Espresso, XCUITest, or Playwright. Offers multiple comparison engines: Pixelmatch, Looks-Same, Odiff, and Vision Language Model (VLM) for AI-driven noticeability checks.
+- **Best for:** Teams needing a complete self-hosted alternative to Percy or Applitools with a multi-tenant review dashboard, baseline history, and ignore regions.
+
+### 9. [argos-ci/argos](https://github.com/argos-ci/argos) [![GitHub stars](https://img.shields.io/github/stars/argos-ci/argos?style=social&color=white)](https://github.com/argos-ci/argos/stargazers)
+- **Stack:** TypeScript / Node.js | **License:** MIT | **Platform:** Framework-agnostic (Web & Mobile screenshots)
+- An open-source visual testing and review platform tailored for teams and AI agents. Ingests screenshots from mobile CI pipelines, provides GitHub PR integration, and flags visual changes with interactive diffing.
+- **Best for:** Modern software engineering teams wanting an MIT-licensed, developer-first visual review interface with active agentic and CI integrations.
+
+### 10. [carbonmeai/danwo](https://github.com/carbonmeai/danwo) [![GitHub stars](https://img.shields.io/github/stars/carbonmeai/danwo?style=social&color=white)](https://github.com/carbonmeai/danwo/stargazers)
+- **Stack:** TypeScript / Node.js | **License:** Apache-2.0 | **Platform:** Android Emulator & iOS Simulator
+- Agentic end-to-end testing framework for web and mobile applications with built-in screenshot assertions (`toHaveScreenshot`). Includes network egress emulation and a fault matrix engine to test mobile apps against edge cases (HTTP 429/500, clock drifts, network drops).
+- **Best for:** Teams wanting an end-to-end test runner with built-in visual screenshot assertions and resilience/fault simulation.
+
+### 11. [yewohq/yewo](https://github.com/yewohq/yewo) [![GitHub stars](https://img.shields.io/github/stars/yewohq/yewo?style=social&color=white)](https://github.com/yewohq/yewo/stargazers)
+- **Stack:** Python / Node.js / Appium | **License:** Apache-2.0 | **Platform:** Native iOS & Android
+- An AI-powered autonomous testing agent for mobile apps that uses vision models to locate controls directly from screen captures rather than brittle accessibility or test IDs, generating visual anomaly evidence.
+- **Best for:** Exploratory autonomous mobile testing and visual anomaly detection without writing manual selector scripts.
 
 ---
 
 ## 📊 Comparison at a Glance
 
-| Software | License | Stack | Mobile Support | Comparison Method | Self-Hosted | Best For |
-|----------|---------|-------|----------------|-------------------|-------------|----------|
-| **Applitools Eyes** | Proprietary | Cloud | ✅ Via Appium | Visual AI | ❌ | Fewest false positives |
-| **BrowserStack Percy** | Proprietary | Cloud | ✅ Native | DOM snapshot + pixel | ❌ | Managed web + mobile |
-| **Sauce Labs Visual** | Proprietary | Cloud | ✅ Device cloud | Smart hybrid diff | ❌ | Sauce Labs users |
-| **Visual Regression Tracker** | MIT | Node.js/Postgres | ✅ Any screenshot | Pixelmatch/Looks-Same/Odiff/VLM | ✅ | Self-hosted + any framework |
-| **Argos** | MIT | TypeScript/Node | (Screenshot input) | Visual diff | ✅ | Percy alternative + AI agents |
-| **reg-suit** | MIT | Node.js/CLI | (Screenshot input) | Pixel diff | ✅ (CLI) | Lightweight CI integration |
-| **dánwò** | Open Source | Node.js/TS | ✅ Emulator/Simulator | Built-in screenshot | ✅ | Integrated E2E + visual |
-| **Yewo** | Open Source (alpha) | Python/Appium | ✅ Android/iOS | Vision model | ✅ | AI agent without selectors |
+| Tool / Platform | Category | Primary License | Platform / Ecosystem | Execution / Engine | Self-Hosted | Free Option |
+|---|---|---|---|---|---|---|
+| **BrowserStack Percy** | Commercial SaaS | Proprietary | Web, iOS & Android | Cloud Snapshot + Pixel Diff | ❌ | ✅ Free tier (5,000 screenshots/mo) |
+| **Sauce Labs Visual** | Commercial SaaS | Proprietary | Real Mobile & Emulators | Cloud Smart Hybrid Diff | ❌ | ⚠️ 28-day free trial |
+| **LambdaTest SmartUI** | Commercial SaaS | Proprietary | Web, iOS & Android | Cloud Visual AI Engine | ❌ | ✅ Free tier (2,000 lifetime screenshots) |
+| **Applitools Eyes** | Commercial SaaS | Proprietary | Web, iOS & Android | Cloud Visual AI Engine | ❌ | ⚠️ 14-day free trial |
+| **swift-snapshot-testing** | Open Source | MIT | Native iOS / Swift | Local XCTest In-Process | ✅ | ✅ Completely Free |
+| **Paparazzi** | Open Source | Apache-2.0 | Android (Compose & Views) | JVM / layoutlib | ✅ | ✅ Completely Free |
+| **ios-snapshot-test-case** | Open Source | MIT | Native iOS / Objective-C & Swift | Local XCTest In-Process | ✅ | ✅ Completely Free |
+| **screenshot-tests-for-android** | Open Source | Apache-2.0 | Android | Instrumentation on device/emulator | ✅ | ✅ Completely Free |
+| **reg-suit** | Open Source | MIT | Framework-agnostic CLI | CLI Pixel Diff + Cloud Storage | ✅ | ✅ Completely Free |
+| **Shot** | Open Source | Apache-2.0 | Android (Compose & Views) | Gradle Plugin / Instrumentation | ✅ | ✅ Completely Free |
+| **Roborazzi** | Open Source | Apache-2.0 | Android (Compose & Views) | JVM / Robolectric Native Graphics | ✅ | ✅ Completely Free |
+| **Visual Regression Tracker** | Open Source | MIT | Framework-agnostic Platform | Docker Server / Multi-Engine (VLM/Pixelmatch) | ✅ | ✅ Completely Free |
+| **Argos** | Open Source | MIT | Framework-agnostic Platform | Docker / Cloud Review UI | ✅ | ✅ Completely Free |
+| **dánwò** | Open Source | Apache-2.0 | Web & Mobile Simulators | Agentic E2E + Built-in Screenshot | ✅ | ✅ Completely Free |
+| **Yewo** | Open Source | Apache-2.0 | Native iOS & Android | Vision Model + Appium Agent | ✅ | ✅ Completely Free |
 
 ---
 
@@ -105,14 +124,12 @@ Yewo is an AI testing agent for Android and iOS apps that uses **visual models t
 
 Contributions are welcome! If you know of an open-source Mobile Visual Regression Testing tool that should be listed here, please open a pull request with:
 
-- Project name and URL
+- Project name and repository URL
 - Brief description (1–2 sentences)
 - Stack and license
 - Why it stands out
 
-Please ensure the project is actively maintained (releases within the last 12 months) and genuinely open-source.
-
-**Note on the open-source ecosystem:** Mobile visual regression testing is a **gap in the open-source landscape** compared to web testing. The commercial tools (Applitools, Percy) dominate, but both have mobile caveats: Applitools requires Appium underneath, inheriting selector fragility [citation:5], and Percy's mobile support, while documented, is an extension of its web-focused DOM snapshot model [citation:11]. On the open-source side, **Visual Regression Tracker** is the most complete self-hosted option, explicitly designed to be **platform independent** — it accepts screenshots from any mobile framework (Appium, Espresso, XCUITest) and offers multiple comparison algorithms including a Vision Language Model for human-noticeability analysis [citation:3][citation:4]. **Argos** is the strongest MIT-licensed Percy alternative with active development and AI agent integration [citation:1][citation:13]. **reg-suit** provides a lightweight CLI approach for teams already comfortable with screenshot capture pipelines [citation:2]. **dánwò** represents a newer integrated approach, bundling screenshot comparison directly into an E2E framework that runs on emulators and simulators [citation:6]. No open-source project fully replicates Applitools' Visual AI accuracy for mobile, but Visual Regression Tracker covers the core self-hosted workflow comprehensively.
+Please ensure the project is actively maintained and genuinely open-source.
 
 ---
 
